@@ -20,6 +20,7 @@ app.post('/html2pdf', async (req, res) => {
         console.log('result', result)
         res.send({ result: result });
     } catch (e) {
+        console.log('e:', e);
         res.sendStatus(500);
     }
 })
