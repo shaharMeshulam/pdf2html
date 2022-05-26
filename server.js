@@ -53,7 +53,7 @@ async function convertHTMLToPDF(html) {
         html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
             console.log("PDF Buffer:-", pdfBuffer);
             resolve(pdfBuffer);
-        }).catch(e => reject(e));
+        }).catch(e => reject({e,file,options}));
     })
 }
 
