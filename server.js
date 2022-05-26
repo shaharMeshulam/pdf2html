@@ -1,5 +1,7 @@
 // const Prince = require("prince");
+
 const html_to_pdf = require('html-pdf-node');
+var pdf = require('html-pdf');
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
@@ -47,13 +49,18 @@ async function createPdf(html) {
 // }
 
 async function convertHTMLToPDF(html) {
-    let file = { content: html };
-    let options = { format: 'A4' };
+    // let file = { content: html };
+    // let options = { format: 'A4' };
+    const timeStamp = + new Date();
     return await new Promise((resolve, reject)=> {
-        html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
-            console.log("PDF Buffer:-", pdfBuffer);
-            resolve(pdfBuffer);
-        }).catch(e => reject({e,file,options}));
+        // html_to_pdf.generatePdf(file, options).then(pdfBuffer => {
+        //     console.log("PDF Buffer:-", pdfBuffer);
+        //     resolve(pdfBuffer);
+        // }).catch(e => reject({e,file,options}));
+        pdf.create(html).toFile(`./public/${timeStamp}.pdf`, function(err, res) {
+            if (err) reject(err);
+            resolve(res); // { filename: '/app/businesscard.pdf' }
+          });
     })
 }
 
