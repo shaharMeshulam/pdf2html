@@ -1,4 +1,4 @@
-// const Prince = require("prince");
+const Prince = require("prince");
 
 const html_to_pdf = require('html-pdf-node');
 var pdf = require('html-pdf');
